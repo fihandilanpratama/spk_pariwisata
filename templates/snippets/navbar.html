@@ -1,0 +1,33 @@
+{% load static %}
+
+{% url 'home' as home_url %}
+{% url 'objekwisata' as objekwisata_url %}
+{% url 'rekomendasi' as rekomendasi_url %}
+
+<header class="header-area header-sticky">
+  <div class="container">
+      <div class="row">
+          <div class="col-12">
+              <nav class="main-nav">
+                  <!-- ***** Logo Start ***** -->
+                  <a href="/" class="logo fs-5">
+                      {{subtitle}}
+                  </a>
+                  <!-- ***** Logo End ***** -->
+                  <!-- ***** Menu Start ***** -->
+                  <ul class="nav">
+                      <li><a href="/" class="{% if request.path == home_url %} active {%endif%}">beranda</a></li>
+                      <li><a href="/objekwisata/" class="{% if request.path == objekwisata_url %} active {%endif%}">objek wisata</a></li>
+                      <li><a href="/rekomendasi/" class="{% if request.path == rekomendasi_url %} active {%endif%}">rekomendasi</a></li>
+                      <!-- <li><a href="/bukutamu/">buku tamu</a></li> -->
+                      <li><a href="/admin/">Login</a></li>
+                  </ul>        
+                  <a class='menu-trigger'>
+                      <span>Menu</span>
+                  </a>
+                  <!-- ***** Menu End ***** -->
+              </nav>
+          </div>
+      </div>
+  </div>
+</header>

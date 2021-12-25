@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block main_content %}
+<section class="section main-banner" id="top" data-section="section1">
+  <video autoplay muted loop id="bg-video">
+      <!-- <source src="{% static 'images/The Breathtaking Beauty of Nature   HD.mp4' %}" type="video/mp4" /> -->
+  </video>
+
+  <div class="video-overlay header-text">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="caption">
+              <h6>Selamat Datang di</h6>
+              <h2>Sistem Pendukung Keputusan metode fuzzy</h2>
+              <p>PENERAPAN METODE FUZZY LOGIC TSUKAMOTO DALAM PENENTU TEMPAT WISATA DI KOTA TERNATE</p>
+              <div class="main-button-red">
+                  <div class="scroll-to-section">
+                    <a href="#contact">CHECK IT OUT</a>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+{% endblock main_content %}

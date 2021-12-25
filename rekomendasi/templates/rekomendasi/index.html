@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main_content %}
+<div class="container bg-secondary" style="margin-top: 130px;">
+  <div class="row justify-content-evenly">
+    <h1 class="text-center text-light pt-3">{{title}}</h1>
+
+    <div class="col-lg-5 col-md-12 col-sm-12 p-3">
+
+        <form action="" method="post" name="parameter_category">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="disabledSelect" class="form-label text-light">Pilih Objek Wisata</label>
+            <select name="nama_wisata" id="nama_wisata" class="form-select">
+              <option value="none">-- pilih --</option>
+              {% for wisata in all_wisatas  %}
+                  <!-- tampilkan nama wisata dan select jika nama wisata sama dengan nama wisata yang dipilih sebelumnya -->
+                  <option value="{{wisata.nama}}" {% if wisata.nama == selected_wisata.nama %} selected {% endif %}>{{wisata.nama}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Pilih</button>
+        </form>
+
+        <form class="mt-4" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="nama" value="{{selected_wisata.nama}}">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label text-light">Harga (per orang)</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{selected_wisata.harga}}" name="harga" required readonly>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label text-light">fasilitas (%)</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" value="{{selected_wisata.jml_fasilitas}}" name="fasilitas" required readonly>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label text-light">jarak (KM)</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" name="jarak" value="{{jarak}}" required>
+            <div id="emailHelp" class="form-text text-white">tidak yakin? cek langsung ke google map --></div>
+          </div>
+          {% if hasil_keputusan %}
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label text-light">Hasil Keputusan</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" name="" value="{{hasil_keputusan}}" readonly>
+          </div>
+          {% endif %}
+          <button type="submit" class="btn btn-primary" name="criteria_submit">Check</button>
+        </form>
+
+    </div>
+    <div class="col-lg-5 mt-5">
+      <p class="text-light fs-6 mb-2">Lokasi di google map</p>
+      <iframe src="{{ selected_wisata.gm_url }}" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </div>
+</div>
+{% endblock main_content %}
