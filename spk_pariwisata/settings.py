@@ -11,9 +11,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import django_on_heroku #
-import dj_database_url #
-from decouple import config #
+import django_heroku #
+# import dj_database_url #
+# from decouple import config #
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware.', #
+    # 'whitenoise.middleware.WhiteNoiseMiddleware.', #
 ]
 
 ROOT_URLCONF = 'spk_pariwisata.urls'
@@ -129,7 +129,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # media directory
 MEDIA_URL = '/media/'
@@ -140,4 +140,4 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-django_on_heroku.settings(locals())
+django_heroku.settings(locals())
