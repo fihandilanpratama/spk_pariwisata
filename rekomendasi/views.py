@@ -4,12 +4,6 @@ from .fuzzy import FuzzyWisata, fuzzy_proses
 
 # Create your views here.
 def index(request):
-  rules = Rule.objects.all()
-  # for rule in rules:
-  #   print(f"harga = {rule.harga}")
-  #   print(f"fasilitas = {rule.fasilitas}")
-  #   print(f"jarak = {rule.jarak}")
-  #   print(f"hasil = {rule.hasil}\n")
   all_wisatas = Wisata.objects.all()
   context = {
     'title': 'rekomendasi',

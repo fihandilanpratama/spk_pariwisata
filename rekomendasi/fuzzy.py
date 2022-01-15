@@ -103,53 +103,8 @@ class FuzzyWisata(Fuzzy):
       'banyak': self.fasilitas_banyak()
     }
     return max(my_dict, key=my_dict.get)
-  
 
-
-
-# class Jarak(Fuzzy):
-  # def __init__(self, nilai):
-  #   super().__init__(nilai)
-
-  # def jarak_dekat(self):
-  #   return super().liniear_turun(5, 7, self.nilai)
-
-  # def jarak_sedang(self):
-  #   return super().kurva_segitiga(5, 10, 15, self.nilai)
-
-  # def jarak_jauh(self):
-  #   return super().linear_naik(12, 15, self.nilai)
-
-  # def get_result(self):
-  #   my_dict = {
-  #     'dekat': self.jarak_dekat(),
-  #     'sedang': self.jarak_sedang(),
-  #     'jauh': self.jarak_jauh()
-  #   }
-  #   return max(my_dict, key=my_dict.get)
-
-
-# class Fasilitas(Fuzzy):
-  # def __init__(self, nilai):
-  #   super().__init__(nilai)
-
-  # def fasilitas_sedikit(self):
-  #   return super().liniear_turun(50, 70, self.nilai)
-
-  # def fasilitas_sedang(self):
-  #   return super().kurva_segitiga(50, 70, 90, self.nilai)
-
-  # def fasilitas_banyak(self):
-  #   return super().linear_naik(70, 90, self.nilai)
-
-  # def get_result(self):
-  #   my_dict = {
-  #     'sedikit': self.fasilitas_sedikit(),
-  #     'sedang': self.fasilitas_sedang(),
-  #     'banyak': self.fasilitas_banyak()
-  #   }
-  #   return max(my_dict, key=my_dict.get)
-
+    
 
 class Rekomendasi(Fuzzy):
   def __init__(self, nilai):
@@ -238,18 +193,16 @@ def fuzzy_proses(rules):
     z_i = sp.solve(eqn)
     Z.append(z_i[0])
 
-  # print(a_predikat)
-  # print(Z)
-
   pembilang = 0
   for index, value in enumerate(rules):
     temp = (a_predikat[index] * Z[index])
     pembilang += temp
   penyebut = sum(a_predikat)
-  print(pembilang / penyebut)
 
-  # print(Rekomendasi(pembilang / penyebut).get_result())
-  result = Rekomendasi(pembilang / penyebut)
+  weight_average = pembilang / penyebut
+  print(weight_average)
+
+  result = Rekomendasi(weight_average)
   print(f"rekomendasi : {result.rekomendasi()}")
   print(f"tdk rekomendasi : {result.tidak_rekomendasi()}")
   return result.get_result()
